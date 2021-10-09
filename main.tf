@@ -17,7 +17,7 @@ resource "aws_vpc" "vpc-tf" {
 resource "aws_subnet" "subnet" {
   count = 6
   vpc_id = aws_vpc.vpc-tf.id
-  cidr_block = var.subnet_cidr[count.index]
+  cidr_block = cidrsubnet(var.cidr_range,8,count.index)
   availability_zone = var.subnet_azs[count.index]
 
   tags = {

@@ -20,11 +20,7 @@ variable "subnets" {
     description = "subnet names"
 }
 
-variable "subnet_cidr" {
-    type = list(string)
-    default = [ "10.10.1.0/24","10.10.2.0/24","10.10.3.0/24","10.10.4.0/24","10.10.5.0/24","10.10.6.0/24", ]
-  
-}
+
 
 variable "subnet_azs" {
     type = list(string)
