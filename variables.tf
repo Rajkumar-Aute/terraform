@@ -14,6 +14,33 @@ variable "cidr_range" {
   
 }
 
+variable "subnets" {
+    type = list(string)
+    default = [ "sub1","sub2","sub3","sub4","sub5","sub6", ]
+    description = "subnet names"
+}
+
+variable "subnet_cidr" {
+    type = list(string)
+    default = [ "10.10.1.0/24","10.10.2.0/24","10.10.3.0/24","10.10.4.0/24","10.10.5.0/24","10.10.6.0/24", ]
+  
+}
+
+variable "subnet_azs" {
+    type = list(string)
+    default = [ "ap-south-1a","ap-south-1b","ap-south-1c","ap-south-1a","ap-south-1b","ap-south-1c" ]
+  
+}
+
+
+
+
+
+
+
+
+
+
 # It will help us to get Account ID and User details.
 data "aws_caller_identity" "current" {}
 

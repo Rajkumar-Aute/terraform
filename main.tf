@@ -12,20 +12,21 @@ resource "aws_vpc" "vpc-tf" {
 
 # Subnet creation
 
-resource "aws_subnet" "subnet1-tf" {
+
+
+resource "aws_subnet" "subnet" {
+  count = 6
   vpc_id = aws_vpc.vpc-tf.id
-  cidr_block = "10.10.1.0/24"
-  availability_zone = "ap-south-1a"
+  cidr_block = var.subnet_cidr[count.index]
+  availability_zone = var.subnet_azs[count.index]
 
   tags = {
-    "Name" = "subnet1-tf"
+    "Name" = var.subnets[count.index]
   }
-  
+  depends_on = [
+    aws_vpc.vpc-tf
+  ]
 }
-
-
-
-
 
 
 
