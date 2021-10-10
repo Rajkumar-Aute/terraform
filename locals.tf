@@ -5,9 +5,13 @@ Cannot be changed with "-var" while running terraform apply command
 */
 
 locals {
-  subnets = ["sub1","sub2","sub3","sub4","sub5","sub6"]
+  subnets = ["web-sub1","web-sub2","app-sub1","app-sub2","db-sub1","db-sub2"]
   igw-name = "igw_tf"
   anyware = "0.0.0.0/0"
   route-table-public = "rt-pub-tf"
   route-table-private = "rt-pri-tf"
+  securitygroup-name-web = "security-group-web"
+  ssh = 22
+  http = 80
+  tcp = "tcp"
 }
