@@ -1,4 +1,4 @@
-
+/*
 // datasourch to fetch subnet ids
 data "aws_subnet_ids" "subnet-public" {
     vpc_id = aws_vpc.vpc-tf.id
@@ -18,10 +18,10 @@ data "aws_subnet_ids" "subnet-private" {
     }
   
 }
+*/
 
-
-/* if you get below error run with #terraform apply -target="aws_subnet.subnets" 
-it will create the dependancey first.
+/* if you get below error run with #terraform apply -target="aws_subnet.subnets" and #terraform apply 
+it will create the dependancey resources.
 │ Error: Invalid for_each argument
 │
 │   on main.tf line 70, in resource "aws_route_table_association" "route-table-association-public":

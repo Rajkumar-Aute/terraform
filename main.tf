@@ -52,7 +52,7 @@ tags = {
   "Name" = local.route-table-public
 }
 }
-/*
+
 // route tabel association public
 resource "aws_route_table_association" "route-table-association-public" {
   count = 2
@@ -64,7 +64,7 @@ resource "aws_route_table_association" "route-table-association-public" {
   ] 
 }
 
-*/
+/*
 // route table association public New approch
 resource "aws_route_table_association" "route-table-association-public" {
   for_each = data.aws_subnet_ids.subnet-public.ids
@@ -80,7 +80,7 @@ resource "aws_route_table_association" "route-table-association-public" {
   ]
   
 }
-
+*/
 
 
 // route table private
@@ -99,7 +99,8 @@ resource "aws_route_table" "route-table-private" {
     "Name" = local.route-table-private
   } 
 }
-/*
+ 
+
 // route table assocaiation private
 resource "aws_route_table_association" "route-table-association-private" {
   count = 4
@@ -111,7 +112,7 @@ resource "aws_route_table_association" "route-table-association-private" {
   ]
 }
 
-*/
+/*
 // route table association private New approch
 resource "aws_route_table_association" "route-table-association-private" {
   for_each = data.aws_subnet_ids.subnet-private.ids
@@ -129,3 +130,4 @@ resource "aws_route_table_association" "route-table-association-private" {
   ]
   
 }
+*/
