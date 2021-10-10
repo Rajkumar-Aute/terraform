@@ -18,4 +18,7 @@ locals {
   http = 80
   tcp = "tcp"
   dbport = "3306"
+
+    db-subnet-group-name = "db-subnet"
+
 }
