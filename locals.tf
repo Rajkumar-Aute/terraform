@@ -12,7 +12,10 @@ locals {
   route-table-private = "rt-pri-tf"
   securitygroup-name-web = "security-group-web"
   securitygroup-name-app    =   "security-group-app"
+  securitygroup-name-db    =   "security-group-db"
+
   ssh = 22
   http = 80
   tcp = "tcp"
+  dbport = "3306"
 }
