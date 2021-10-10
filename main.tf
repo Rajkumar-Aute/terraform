@@ -1,5 +1,4 @@
-
-# VPC creation
+// VPC creation
 resource "aws_vpc" "vpc-tf" {
   cidr_block  = var.cidr_range
   instance_tenancy  = "default"
@@ -10,7 +9,7 @@ resource "aws_vpc" "vpc-tf" {
   }
 }
 
-# Subnet creation
+// Subnet creation
 resource "aws_subnet" "subnet" {
   count = 6
   vpc_id = aws_vpc.vpc-tf.id #select vpc using vpc.id
@@ -25,7 +24,7 @@ resource "aws_subnet" "subnet" {
   ]
 }
 
-# Attaching internet gateway to vpc
+// Attaching internet gateway to vpc
 resource "aws_internet_gateway" "igw_tf" {
   vpc_id = aws_vpc.vpc-tf.id
 
@@ -37,8 +36,30 @@ resource "aws_internet_gateway" "igw_tf" {
   ]
 }
 
+// Creation of Route table
+resource "aws_route_table" "rt-tf" {
+  vpc_id = aws_vpc.vpc-tf.id
+  route {
+    cidr_block = local.anyware
+    gateway_id = aws_internet_gateway.igw_tf.id
+}
+depends_on = [
+  aws_vpc.vpc-tf,
+  aws_subnet.subnet[0],
+  aws_subnet.subnet[1]
+]
+}
 
+// route tabel association
+resource "aws_route_table_association" "web-rt" {
+  count = 2
+  route_table_id = aws_route_table.rt-tf.id
+  subnet_id = aws_subnet.subnet[count.index].id
 
-
+  depends_on = [
+    aws_route_table.rt-tf
+  ]
+  
+}
 
 
