@@ -1,4 +1,3 @@
-/*
 // datasourch to fetch subnet ids
 data "aws_subnet_ids" "subnet-public" {
     vpc_id = aws_vpc.vpc-tf.id
@@ -19,4 +18,3 @@ data "aws_subnet_ids" "subnet-private" {
   
 }
 
-*/
