@@ -37,7 +37,7 @@ resource "aws_internet_gateway" "igw-tf" {
 }
 
 // Creation of Route table
-resource "aws_route_table" "route-table-public-tf" {
+resource "aws_route_table" "route-table-public" {
   vpc_id = aws_vpc.vpc-tf.id
   route {
     cidr_block = local.anyware
@@ -52,17 +52,32 @@ tags = {
   "Name" = local.route-table-public
 }
 }
-
+/*
 // route tabel association public
-resource "aws_route_table_association" "route-table-association-public-rt" {
+resource "aws_route_table_association" "route-table-association-public-" {
   count = 2
-  route_table_id = aws_route_table.route-table-public-tf.id
+  route_table_id = aws_route_table.route-table-public.id
   subnet_id = aws_subnet.subnets[count.index].id
 
   depends_on = [
-    aws_route_table.route-table-public-tf
+    aws_route_table.route-table-public
   ] 
 }
+*/
+
+// route table association public New approch
+resource "aws_route_table_association" "route-table-association-public" {
+  for_each = data.aws_subnet_ids.subnet-public.ids
+  route_table_id = aws_route_table.route-table-public.id
+  subnet_id = each.key
+
+  depends_on = [
+    aws_route_table.route-table-public
+  ]
+  
+}
+
+
 
 // route table private
 resource "aws_route_table" "route-table-private" {
