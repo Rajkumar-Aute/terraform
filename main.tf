@@ -72,7 +72,11 @@ resource "aws_route_table_association" "route-table-association-public" {
   subnet_id = each.key
 
   depends_on = [
-    aws_route_table.route-table-public
+    aws_route_table.route-table-public,
+    aws_vpc.vpc-tf,
+    aws_subnet.subnets[0],
+    aws_subnet.subnets[1]
+
   ]
   
 }
@@ -115,7 +119,13 @@ resource "aws_route_table_association" "route-table-association-private" {
   subnet_id = each.key
 
   depends_on = [
-  aws_route_table.route-table-private
+    aws_route_table.route-table-private,
+    aws_vpc.vpc-tf,
+    aws_subnet.subnets[2],
+    aws_subnet.subnets[3],
+    aws_subnet.subnets[4],
+    aws_subnet.subnets[5],
+
   ]
   
 }
