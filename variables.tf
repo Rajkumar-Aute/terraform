@@ -22,15 +22,6 @@ variable "subnets" {
 
 
 
-variable "subnet_azs" {
-    type = list(string)
-    default = [ "ap-south-1a","ap-south-1b","ap-south-1c","ap-south-1a","ap-south-1b","ap-south-1c" ]
-  
-}
-
-
-
-
 
 
 
