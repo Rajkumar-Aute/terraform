@@ -13,7 +13,7 @@ variable "region" {
 
 
 # Variable for CIDR range, this can be changed while running terraform apply -var "cidr_range=<required_iprange>"
-variable "cidr_range" {
+variable "cidr-range" {
     type = string
     default = "10.10.0.0/16"
     description = "VPC CIDR range"
