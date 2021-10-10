@@ -52,9 +52,9 @@ tags = {
   "Name" = local.route-table-public
 }
 }
-/*
+
 // route tabel association public
-resource "aws_route_table_association" "route-table-association-public-" {
+resource "aws_route_table_association" "route-table-association-public" {
   count = 2
   route_table_id = aws_route_table.route-table-public.id
   subnet_id = aws_subnet.subnets[count.index].id
@@ -63,8 +63,8 @@ resource "aws_route_table_association" "route-table-association-public-" {
     aws_route_table.route-table-public
   ] 
 }
-*/
 
+/*
 // route table association public New approch
 resource "aws_route_table_association" "route-table-association-public" {
   for_each = data.aws_subnet_ids.subnet-public.ids
@@ -77,7 +77,7 @@ resource "aws_route_table_association" "route-table-association-public" {
   
 }
 
-
+*/
 
 // route table private
 resource "aws_route_table" "route-table-private" {
@@ -106,3 +106,17 @@ resource "aws_route_table_association" "route-table-association-private" {
     aws_route_table.route-table-private
   ]
 }
+
+/*
+// route table association private New approch
+resource "aws_route_table_association" "route-table-association-private" {
+  for_each = data.aws_subnet_ids.subnet-private
+  route_table_id = aws_route_table.route-table-private.id
+  subnet_id = each.key
+
+  depends_on = [
+  aws_route_table.route-table-private
+  ]
+  
+}
+*/
