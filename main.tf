@@ -25,7 +25,17 @@ resource "aws_subnet" "subnet" {
   ]
 }
 
+# Attaching internet gateway to vpc
+resource "aws_internet_gateway" "igw_tf" {
+  vpc_id = aws_vpc.vpc-tf.id
 
+  tags = {
+    "Name" = local.igw_name
+  }
+  depends_on = [
+    aws_vpc.vpc-tf
+  ]
+}
 
 
 
