@@ -19,6 +19,13 @@ locals {
   tcp = "tcp"
   dbport = "3306"
 
+
+// locals for RDS
     db-subnet-group-name = "db-subnet"
+    db-rds-name =   "rds-tf"
+    db-name =   "mysqltf"
+    rds-instance-type   =   "db.t2.micro"
+    rds-username    =   "user"
+    rds-password    =   "Welcome12345"
 
 }
