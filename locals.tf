@@ -11,6 +11,7 @@ locals {
   route-table-public = "rt-pub-tf"
   route-table-private = "rt-pri-tf"
   securitygroup-name-web = "security-group-web"
+  securitygroup-name-app    =   "security-group-app"
   ssh = 22
   http = 80
   tcp = "tcp"
