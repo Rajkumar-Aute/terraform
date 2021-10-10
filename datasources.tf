@@ -1,3 +1,4 @@
+
 // datasourch to fetch subnet ids
 data "aws_subnet_ids" "subnet-public" {
     vpc_id = aws_vpc.vpc-tf.id
@@ -13,10 +14,11 @@ data "aws_subnet_ids" "subnet-private" {
     vpc_id = aws_vpc.vpc-tf.id
     filter {
       name = "tag:Name"
-      values = [local.subnets[2], local.subnets[3], local.subnets[4], local.subnets[5]]
+      values = [local.subnets[2], local.subnets[3], local.subnets[4], local.subnets[5],]
     }
   
 }
+
 
 /* if you get below error run with #terraform apply -target="aws_subnet.subnets" 
 it will create the dependancey first.

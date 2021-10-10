@@ -114,7 +114,7 @@ resource "aws_route_table_association" "route-table-association-private" {
 */
 // route table association private New approch
 resource "aws_route_table_association" "route-table-association-private" {
-  for_each = data.aws_subnet_ids.subnet-private
+  for_each = data.aws_subnet_ids.subnet-private.ids
   route_table_id = aws_route_table.route-table-private.id
   subnet_id = each.key
 
