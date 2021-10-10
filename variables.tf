@@ -1,5 +1,9 @@
-# Variables for terraform filesresource 
+# Variables for terraform filesresource
+# Variables can be paramatirized.
 
+
+
+# variable for Region, this can be changed while running terraform apply -var "region=<required_region>"
 variable "region" {
     type = string
     default = "ap-south-1"
@@ -7,6 +11,8 @@ variable "region" {
   
 }
 
+
+# Variable for CIDR range, this can be changed while running terraform apply -var "cidr_range=<required_iprange>"
 variable "cidr_range" {
     type = string
     default = "10.10.0.0/16"
