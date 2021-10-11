@@ -34,3 +34,13 @@ it will create the dependancey resources.
 │ be created. To work around this, use the -target argument to first apply
 │ only the resources that the for_each depends on.
  */
+
+
+ data "aws_ami" "ubuntu" {
+   owners = [ "099720109477" ]
+   most_recent = true
+   filter {
+     name = "name"
+     values = ["ubuntu/images/hvm-ssd/ubuntu-focal-20.04-amd64-server-*"]
+   }
+ }

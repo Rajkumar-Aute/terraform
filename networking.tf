@@ -78,7 +78,6 @@ resource "aws_route_table_association" "route-table-association-public" {
     aws_subnet.subnets[1]
 
   ]
-  
 }
 */
 
@@ -128,6 +127,5 @@ resource "aws_route_table_association" "route-table-association-private" {
     aws_subnet.subnets[5],
 
   ]
-  
 }
 */

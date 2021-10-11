@@ -37,6 +37,8 @@ resource "aws_security_group" "security-group-web" {
     ]
 }
 
+// creating app security group
+
 resource "aws_security_group" "security-group-app" {
     name = local.securitygroup-name-app
     vpc_id = aws_vpc.vpc-tf.id
@@ -69,6 +71,7 @@ resource "aws_security_group" "security-group-app" {
 
 }
 
+// creating rds security group
 resource "aws_security_group" "security-group-db" {
     name = local.securitygroup-name-db
     vpc_id = aws_vpc.vpc-tf.id
@@ -97,6 +100,4 @@ resource "aws_security_group" "security-group-db" {
     tags = {
       "Name" = local.securitygroup-name-db
     }
-  
-
 }

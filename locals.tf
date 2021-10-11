@@ -13,7 +13,6 @@ locals {
   securitygroup-name-web = "security-group-web"
   securitygroup-name-app    =   "security-group-app"
   securitygroup-name-db    =   "security-group-db"
-
   ssh = 22
   http = 80
   tcp = "tcp"
@@ -21,11 +20,13 @@ locals {
 
 
 // locals for RDS
-    db-subnet-group-name = "db-subnet"
-    db-rds-name =   "rds-tf"
-    db-name =   "mysqltf"
-    rds-instance-type   =   "db.t2.micro"
-    rds-username    =   "user"
-    rds-password    =   "Welcome12345"
+  db-subnet-group-name = "db-subnet"
+  db-rds-name =   "rds-tf"
+  db-name =   "mysqltf"
+  rds-instance-type   =   "db.t2.micro"
+  rds-username    =   "user"
+  rds-password    =   "Welcome12345"
 
+// lodals for ec2
+  ec2-ssh-key = "terraform"    
 }
