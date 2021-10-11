@@ -1,7 +1,7 @@
 // VPC creation
 resource "aws_vpc" "vpc-tf" {
-  cidr_block  = var.cidr-range
-  instance_tenancy  = "default"
+  cidr_block           = var.cidr-range
+  instance_tenancy     = "default"
   enable_dns_hostnames = true
 
   tags = {
@@ -11,10 +11,10 @@ resource "aws_vpc" "vpc-tf" {
 
 // Subnet creation
 resource "aws_subnet" "subnets" {
-  count = 6
-  vpc_id = aws_vpc.vpc-tf.id #select vpc using vpc.id
-  cidr_block = cidrsubnet(var.cidr-range,8,count.index) # "cidrsubnet" is function, "8" is bit count will be added to cidr /16, and "count.index" will add count to subnet cidr.
-  availability_zone = "${var.region}${count.index%2 == 0?"a":"b"}" # az name will be dynamically writen using region variable and count function and conditional experession.
+  count             = 6
+  vpc_id            = aws_vpc.vpc-tf.id                                  #select vpc using vpc.id
+  cidr_block        = cidrsubnet(var.cidr-range, 8, count.index)         # "cidrsubnet" is function, "8" is bit count will be added to cidr /16, and "count.index" will add count to subnet cidr.
+  availability_zone = "${var.region}${count.index % 2 == 0 ? "a" : "b"}" # az name will be dynamically writen using region variable and count function and conditional experession.
 
   tags = {
     "Name" = local.subnets[count.index]
@@ -42,26 +42,26 @@ resource "aws_route_table" "route-table-public" {
   route {
     cidr_block = local.anyware
     gateway_id = aws_internet_gateway.igw-tf.id
-}
-depends_on = [
-  aws_vpc.vpc-tf,
-  aws_subnet.subnets[0],
-  aws_subnet.subnets[1]
-]
-tags = {
-  "Name" = local.route-table-public
-}
+  }
+  depends_on = [
+    aws_vpc.vpc-tf,
+    aws_subnet.subnets[0],
+    aws_subnet.subnets[1]
+  ]
+  tags = {
+    "Name" = local.route-table-public
+  }
 }
 
 // route tabel association public
 resource "aws_route_table_association" "route-table-association-public" {
-  count = 2
+  count          = 2
   route_table_id = aws_route_table.route-table-public.id
-  subnet_id = aws_subnet.subnets[count.index].id
+  subnet_id      = aws_subnet.subnets[count.index].id
 
   depends_on = [
     aws_route_table.route-table-public
-  ] 
+  ]
 }
 
 /*
@@ -96,15 +96,15 @@ resource "aws_route_table" "route-table-private" {
   ]
   tags = {
     "Name" = local.route-table-private
-  } 
+  }
 }
- 
+
 
 // route table assocaiation private
 resource "aws_route_table_association" "route-table-association-private" {
-  count = 4
+  count          = 4
   route_table_id = aws_route_table.route-table-private.id
-  subnet_id = aws_subnet.subnets[count.index+2].id
+  subnet_id      = aws_subnet.subnets[count.index + 2].id
 
   depends_on = [
     aws_route_table.route-table-private
