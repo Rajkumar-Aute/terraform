@@ -5,7 +5,8 @@ resource "aws_vpc" "vpc-tf" {
   enable_dns_hostnames = true
 
   tags = {
-    Name = "vpc-tf"
+    Name = "vpc-tf${terraform.workspace}",
+    env = terraform.workspace
   }
 }
 
@@ -17,7 +18,8 @@ resource "aws_subnet" "subnets" {
   availability_zone = "${var.region}${count.index % 2 == 0 ? "a" : "b"}" # az name will be dynamically writen using region variable and count function and conditional experession.
 
   tags = {
-    "Name" = local.subnets[count.index]
+    Name = local.subnets[count.index]
+    env = terraform.workspace
   }
   depends_on = [
     aws_vpc.vpc-tf
@@ -30,6 +32,7 @@ resource "aws_internet_gateway" "igw-tf" {
 
   tags = {
     "Name" = local.igw-name
+    env = terraform.workspace
   }
   depends_on = [
     aws_vpc.vpc-tf
@@ -50,6 +53,8 @@ resource "aws_route_table" "route-table-public" {
   ]
   tags = {
     "Name" = local.route-table-public
+    "env" = terraform.workspace
+
   }
 }
 
@@ -96,6 +101,7 @@ resource "aws_route_table" "route-table-private" {
   ]
   tags = {
     "Name" = local.route-table-private
+    "env" = terraform.workspace
   }
 }
 

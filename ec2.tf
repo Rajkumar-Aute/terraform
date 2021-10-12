@@ -8,19 +8,18 @@ resource "aws_instance" "ec2-web-tf" {
   subnet_id                   = aws_subnet.subnets[0].id
 
   tags = {
-    "Name" = "webserver"
+    "Name" = "local.ec2-web-server-name-${terraform.workspace}"
+    "env" = terraform.workspace
   }
-/*
+
   depends_on = [
     aws_db_instance.rds-tf
   ]
-*/
 }
 
 // null resource and provisioner is add to run the script at the time of creating the resources
 
 resource "null_resource" "null-provisionining" {
-  
 
   connection {
     type        = "ssh"
@@ -28,14 +27,12 @@ resource "null_resource" "null-provisionining" {
     private_key = file("C:/Users/raj/terraform.pem") // provide the ssh key path by creating from AWS Console
     host        = aws_instance.ec2-web-tf.public_ip
   }
+
   provisioner "remote-exec" {
     inline = [
         "sudo apt update", 
-        "sudo apt install apache2 -y",
-        "sudo apt install php libapache2-mod-php php-mysql php-cli -y",
+        "sudo apt install apache2 php libapache2-mod-php php-mysql php-cli -y",
         "echo '<?php phpinfo(); ?>'| sudo tee /var/www/html/info.php"
         ]
-
   }
 }
-
