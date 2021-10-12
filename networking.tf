@@ -6,7 +6,7 @@ resource "aws_vpc" "vpc-tf" {
 
   tags = {
     Name = "vpc-tf${terraform.workspace}",
-    env = terraform.workspace
+    env  = terraform.workspace
   }
 }
 
@@ -19,7 +19,7 @@ resource "aws_subnet" "subnets" {
 
   tags = {
     Name = local.subnets[count.index]
-    env = terraform.workspace
+    env  = terraform.workspace
   }
   depends_on = [
     aws_vpc.vpc-tf
@@ -32,7 +32,7 @@ resource "aws_internet_gateway" "igw-tf" {
 
   tags = {
     "Name" = local.igw-name
-    env = terraform.workspace
+    env    = terraform.workspace
   }
   depends_on = [
     aws_vpc.vpc-tf
@@ -53,7 +53,7 @@ resource "aws_route_table" "route-table-public" {
   ]
   tags = {
     "Name" = local.route-table-public
-    "env" = terraform.workspace
+    "env"  = terraform.workspace
 
   }
 }
@@ -101,7 +101,7 @@ resource "aws_route_table" "route-table-private" {
   ]
   tags = {
     "Name" = local.route-table-private
-    "env" = terraform.workspace
+    "env"  = terraform.workspace
   }
 }
 

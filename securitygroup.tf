@@ -29,7 +29,7 @@ resource "aws_security_group" "security-group-web" {
 
   tags = {
     "Name" = local.securitygroup-name-web
-    "env" = terraform.workspace
+    "env"  = terraform.workspace
   }
 
   depends_on = [
@@ -67,7 +67,7 @@ resource "aws_security_group" "security-group-app" {
 
   tags = {
     "Name" = local.securitygroup-name-app
-    "env" = terraform.workspace
+    "env"  = terraform.workspace
   }
 
 
@@ -101,6 +101,6 @@ resource "aws_security_group" "security-group-db" {
 
   tags = {
     "Name" = local.securitygroup-name-db
-    "env" = terraform.workspace
+    "env"  = terraform.workspace
   }
 }

@@ -33,6 +33,6 @@ locals {
   rds-password         = "Welcome12345"
 
   // lodals for ec2
-  ec2-web-server-name  = "ec2-web-server-${terraform.workspace}"
-  ec2-ssh-key = "terraform"
+  ec2-web-server-name = "ec2-web-server-${terraform.workspace}"
+  ec2-ssh-key         = "terraform"
 }

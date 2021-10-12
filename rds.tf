@@ -5,7 +5,7 @@ resource "aws_db_subnet_group" "db-subnet-group" {
 
   tags = {
     "Name" = local.db-subnet-group-name
-    "env" = terraform.workspace
+    "env"  = terraform.workspace
   }
   depends_on = [
     aws_subnet.subnets[4],
@@ -34,6 +34,6 @@ resource "aws_db_instance" "rds-tf" {
 
   tags = {
     "Name" = local.db-rds-name
-    "env" = terraform.workspace
+    "env"  = terraform.workspace
   }
 }

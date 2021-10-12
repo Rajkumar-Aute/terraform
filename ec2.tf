@@ -9,7 +9,7 @@ resource "aws_instance" "ec2-web-tf" {
 
   tags = {
     "Name" = local.ec2-web-server-name
-    "env" = terraform.workspace
+    "env"  = terraform.workspace
   }
 
   depends_on = [
@@ -30,9 +30,9 @@ resource "null_resource" "null-provisionining" {
 
   provisioner "remote-exec" {
     inline = [
-        "sudo apt update", 
-        "sudo apt install apache2 php libapache2-mod-php php-mysql php-cli -y",
-        "echo '<?php phpinfo(); ?>'| sudo tee /var/www/html/info.php"
-        ]
+      "sudo apt update",
+      "sudo apt install apache2 php libapache2-mod-php php-mysql php-cli -y",
+      "echo '<?php phpinfo(); ?>'| sudo tee /var/www/html/info.php"
+    ]
   }
 }
