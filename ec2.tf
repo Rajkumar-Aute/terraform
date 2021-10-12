@@ -8,7 +8,7 @@ resource "aws_instance" "ec2-web-tf" {
   subnet_id                   = aws_subnet.subnets[0].id
 
   tags = {
-    "Name" = "local.ec2-web-server-name-${terraform.workspace}"
+    "Name" = local.ec2-web-server-name
     "env" = terraform.workspace
   }
 
