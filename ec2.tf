@@ -24,7 +24,7 @@ resource "null_resource" "null-provisionining" {
   connection {
     type        = "ssh"
     user        = "ubuntu"
-    private_key = file("C:/Users/raj/terraform.pem") // provide the ssh key path by creating from AWS Console
+    private_key = file("/../../ssh.pem") // provide the ssh key path by creating from AWS Console
     host        = aws_instance.ec2-web-tf.public_ip
   }
 
